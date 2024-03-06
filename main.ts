@@ -5,10 +5,8 @@ function CheckForWin3 (Row: number, Col: number, RedTrueYellowFalse: boolean) {
             if (_true == 0) {
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col + index, Row + index), Red)) {
                     _true = 0
-                    console.log("true is 0")
                 } else {
                     _true = 1
-                    console.log("true is 1")
                 }
             }
         }
@@ -125,6 +123,7 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         CheckForWin2(sprite.tilemapLocation().row, sprite.tilemapLocation().column, true)
         CheckForWin3(sprite.tilemapLocation().row, sprite.tilemapLocation().column, true)
         CheckForWin4(sprite.tilemapLocation().row, sprite.tilemapLocation().column, true)
+        checkfortie()
     } else {
         tiles.setWallAt(sprite.tilemapLocation(), true)
         New_Turn(Reds_Turn)
@@ -133,6 +132,7 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         CheckForWin2(sprite.tilemapLocation().row, sprite.tilemapLocation().column, false)
         CheckForWin3(sprite.tilemapLocation().row, sprite.tilemapLocation().column, false)
         CheckForWin4(sprite.tilemapLocation().row, sprite.tilemapLocation().column, true)
+        checkfortie()
     }
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -156,16 +156,16 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function checkfortie () {
-    if (tiles.getTilesByType(assets.tile`myTile3`).length + tiles.getTilesByType(assets.tile`myTile1`).length == 42) {
+    if (tiles.getTilesByType(assets.tile`myTile3`).length + tiles.getTilesByType(assets.tile`myTile1`).length >= 3) {
         game.splash("\"There is a tie")
     }
 }
 function CheckForWin (Row: number, Col: number, RedTrueYellowFalse: boolean) {
     if (RedTrueYellowFalse == true) {
         _true = 0
-        for (let index5 = 0; index5 <= 3; index5++) {
+        for (let index2 = 0; index2 <= 3; index2++) {
             if (_true == 0) {
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col, Row + index5), Red)) {
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col, Row + index2), Red)) {
                     _true = 0
                 } else {
                     _true = 1
@@ -177,9 +177,9 @@ function CheckForWin (Row: number, Col: number, RedTrueYellowFalse: boolean) {
         }
     } else {
         _true = 0
-        for (let index6 = 0; index6 <= 3; index6++) {
+        for (let index3 = 0; index3 <= 3; index3++) {
             if (_true == 0) {
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col, Row + index6), Yellow)) {
+                if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col, Row + index3), Yellow)) {
                     _true = 0
                 } else {
                     _true = 1
@@ -201,12 +201,7 @@ function CheckForWin4 (Row: number, Col: number, RedTrueYellowFalse: boolean) {
             if (_true == 0) {
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col - index7, Row), Red)) {
                     _true = 0
-                    console.log("true is 0")
                 } else {
-                    _true = 1
-                    console.log("true is 1")
-                }
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col - index7, Row), assets.tile`transparency16`)) {
                     _true = 1
                 }
             }
@@ -279,12 +274,7 @@ function CheckForWin2 (Row: number, Col: number, RedTrueYellowFalse: boolean) {
             if (_true == 0) {
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col + index9, Row), Red)) {
                     _true = 0
-                    console.log("true is 0")
                 } else {
-                    _true = 1
-                    console.log("true is 1")
-                }
-                if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col + index9, Row), assets.tile`transparency16`)) {
                     _true = 1
                 }
             }
@@ -318,26 +308,6 @@ let Token: Sprite = null
 scene.setBackgroundColor(15)
 tiles.setCurrentTilemap(tilemap`level1`)
 Reds_Turn = true
-New_Turn(Reds_Turn)
-Reds_Turn = false
-scene.setBackgroundColor(15)
-tiles.setCurrentTilemap(tilemap`level1`)
-Reds_Turn = true
-New_Turn(Reds_Turn)
-Reds_Turn = false
-scene.setBackgroundColor(15)
-tiles.setCurrentTilemap(tilemap`level1`)
-Reds_Turn = true
-New_Turn(Reds_Turn)
-Reds_Turn = false
-scene.setBackgroundColor(15)
-tiles.setCurrentTilemap(tilemap`level1`)
-Reds_Turn = true
-New_Turn(Reds_Turn)
-Reds_Turn = false
-scene.setBackgroundColor(15)
-tiles.setCurrentTilemap(tilemap`level1`)
 Left_Most_Column = 2
 Right_Most_Column = 6
-Reds_Turn = true
 New_Turn(Reds_Turn)
