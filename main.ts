@@ -34,10 +34,8 @@ function CheckForWin3 (Row: number, Col: number, RedTrueYellowFalse: boolean) {
             if (_true == 0) {
                 if (tiles.tileAtLocationEquals(tiles.getTileLocation(Col - index3, Row + index3), Red)) {
                     _true = 0
-                    console.log("true is 0")
                 } else {
                     _true = 1
-                    console.log("true is 1")
                 }
             }
         }
@@ -131,7 +129,7 @@ scene.onHitWall(SpriteKind.Player, function (sprite, location) {
         CheckForWin(sprite.tilemapLocation().row, sprite.tilemapLocation().column, false)
         CheckForWin2(sprite.tilemapLocation().row, sprite.tilemapLocation().column, false)
         CheckForWin3(sprite.tilemapLocation().row, sprite.tilemapLocation().column, false)
-        CheckForWin4(sprite.tilemapLocation().row, sprite.tilemapLocation().column, true)
+        CheckForWin4(sprite.tilemapLocation().row, sprite.tilemapLocation().column, false)
         checkfortie()
     }
 })
@@ -156,8 +154,43 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     }
 })
 function checkfortie () {
-    if (tiles.getTilesByType(assets.tile`myTile3`).length + tiles.getTilesByType(assets.tile`myTile1`).length >= 3) {
+    if (tiles.getTilesByType(img`
+        . . . 2 2 2 2 2 2 2 2 2 2 . . . 
+        . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+        . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+        . 2 2 2 2 2 2 2 2 2 2 2 2 2 2 . 
+        . . 2 2 2 2 2 2 2 2 2 2 2 2 . . 
+        . . . 2 2 2 2 2 2 2 2 2 2 . . . 
+        `).length + tiles.getTilesByType(img`
+        . . . 5 5 5 5 5 5 5 5 5 5 . . . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 
+        . 5 5 5 5 5 5 5 5 5 5 5 5 5 5 . 
+        . . 5 5 5 5 5 5 5 5 5 5 5 5 . . 
+        . . . 5 5 5 5 5 5 5 5 5 5 . . . 
+        `).length == 42) {
         game.splash("\"There is a tie")
+        game.reset()
     }
 }
 function CheckForWin (Row: number, Col: number, RedTrueYellowFalse: boolean) {
